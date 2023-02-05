@@ -1,0 +1,35 @@
+.search__wrapper {
+    position: relative;
+}
+
+.search__input {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 10px 16px;
+    width: 300px;
+    border-radius: 20px;
+    font-size: 18px;
+    padding-left: 45px;
+}
+
+.search__icon {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    left: 10px;
+    top: 10px;
+}
+
+.search__img {
+    position: absolute;
+    top: 17px;
+    height: 17px;
+    width: 17px;
+
+    opacity: .5;
+    left: 270px;
+}
+
+.search__img:hover {
+    opacity: 1;
+    cursor: pointer;
+}

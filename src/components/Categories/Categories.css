@@ -1,0 +1,57 @@
+.categories {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    font-weight: 600;
+    font-size: 20px;
+    overflow-x: scroll;
+    width: 1000px;
+}
+
+.categories::-webkit-scrollbar {
+
+    height: 7px;
+    background-color: black;
+}
+
+.categories::-webkit-scrollbar {
+    width: 10px;
+}
+
+.categories::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgb(233, 233, 233) inset;
+    background-color: #f9f9fd;
+}
+
+.categories::-webkit-scrollbar-thumb {
+    background-color: #fe5f1e;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%,
+            color-stop(.5, rgba(255, 255, 255, .25)),
+            color-stop(.5, transparent), to(transparent));
+}
+
+
+.categories--item {
+    margin-left: 75px;
+    padding: 10px 17px;
+    border-radius: 25px;
+    background-color: rgb(233, 233, 233);
+    cursor: pointer;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    transition: background-color .2s ease;
+
+
+}
+
+.categories--item:first-child {
+    margin-left: 0px !important;
+
+}
+
+.categories--item.active {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,41 @@
+.not-found {
+    display: block;
+    margin: 0 auto;
+    margin: 200px 0;
+}
+
+.not-found__title {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.not-found__button {
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 600;
+    background-color: #fe5f1e;
+    width: 350px;
+    height: 35px;
+    color: white;
+    border-radius: 25px;
+    height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.not-found__button:hover {
+    color: white;
+    background-color: #d94e18;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    border-radius: 30px;
+}
+
+.not-found__img {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    pointer-events: none;
+}
