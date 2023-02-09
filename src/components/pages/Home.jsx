@@ -1,4 +1,6 @@
 import React from "react";
+import qs from "qs";
+import axios from "axios";
 import Categories from "../Categories/Categories.jsx";
 import DiskItem from "../DiskItem/DiskItem";
 import style from "./Home.css";
@@ -10,42 +12,43 @@ import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Search from "../Search/Search.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
+import { setCategoryId, setCurrentPage } from "../../redux/slices/filterSlice";
 import { SearchContext } from "../../App.js";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function Home() {
+  const dispatch = useDispatch();
+
   const categoryId = useSelector((state) => state.filter.categoryId);
+  const sortType = useSelector((state) => state.filter.sort.sortProperty);
+  const currentPage = useSelector((state) => state.filter.currentPage);
 
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const [diskDB, setDiskDB] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  // const [categoryId, setCategoryId] = React.useState(0);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [sortType, setSortType] = React.useState({
-    name: "популярности",
-    sortProperty: "rating",
-  });
 
   const onClickCategory = (id) => {
-    console.log(id);
+    dispatch(setCategoryId(id));
+  };
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
   };
 
   React.useEffect(() => {
     setIsLoading(true);
 
-    const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
+    const order = sortType.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    fetch(
-      `https://62b6e7ae6999cce2e809e977.mockapi.io/items?page=${currentPage}&limit=8&${
-        categoryId > 0 ? `category=${categoryId}` : ""
-      }&sortBy=${sortType.sortProperty.replace("-", "")}&order=${order}${search}`
-    )
+    axios
+      .get(
+        `https://62b6e7ae6999cce2e809e977.mockapi.io/items?page=${currentPage}&limit=8&${
+          categoryId > 0 ? `category=${categoryId}` : ""
+        }&sortBy=${sortType.replace("-", "")}&order=${order}${search}`
+      )
       .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setDiskDB(arr);
+        setDiskDB(res.data);
         setIsLoading(false);
       });
   }, [categoryId, sortType, searchValue, currentPage]);
@@ -58,7 +61,7 @@ function Home() {
 
       <div className="bottom--header">
         <Categories categoryId={categoryId} onClickCategory={onClickCategory} />
-        <Sort sortType={sortType} onClickSort={(id) => setSortType(id)} />
+        <Sort />
       </div>
       <div className="search">
         <Search />
@@ -68,7 +71,7 @@ function Home() {
           ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
           : diskDB.map((obj) => <DiskItem key={obj.id} {...obj} />)}
       </div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </>
   );
 }
