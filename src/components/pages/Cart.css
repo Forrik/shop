@@ -1,0 +1,25 @@
+.cart {}
+
+.cart__top {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
+
+.cart__item {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+}
+
+
+
+
+.cart__img {
+    pointer-events: none;
+    width: 100px;
+    height: 100px;
+}

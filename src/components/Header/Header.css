@@ -1,3 +1,13 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    height: 75px;
+
+}
+
 .header--svg {
     align-items: center;
     pointer-events: none;
@@ -56,13 +66,13 @@
     transition: color .4s ease;
 }
 
-.cart {
+.basket {
 
     background-color: #fe5f1e;
     border-radius: 30px;
 }
 
-.cart__button {
+.basket__button {
     display: flex;
     align-items: center;
     line-height: 23px;
@@ -71,7 +81,7 @@
     color: white;
 }
 
-.cart__button:hover {
+.basket__button:hover {
     color: white;
     background-color: #d94e18;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
@@ -87,7 +97,7 @@
     margin-right: 14px;
 }
 
-.cart__item {
+.basket__item {
     font-size: 18px;
     font-weight: 600;
 }
@@ -95,6 +105,6 @@
 
 
 
-.cart__img {
+.basket__img {
     pointer-events: none;
 }

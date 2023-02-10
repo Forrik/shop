@@ -2,8 +2,12 @@ import React from "react";
 import style from "./Header.css";
 import cartItem from "../../img/cartItem.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
+  const { items, totalPrice } = useSelector((state) => state.cart);
+
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   return (
     <header>
       <div className="header--items">
@@ -44,12 +48,12 @@ function Header() {
           </Link>
         </ul>
 
-        <div className="cart">
-          <Link to="/cart" className="cart__button">
-            <span className="cart__item">0₽</span>
+        <div className="basket">
+          <Link to="/cart" className="basket__button">
+            <span className="basket__item">{totalPrice}₽</span>
             <div className="line"></div>
-            <div className="cart__item">0 </div>
-            <img className="cart__img" src={cartItem} alt="" />
+            <div className="basket__item">{totalCount}</div>
+            <img className="basket__img" src={cartItem} alt="" />
           </Link>
         </div>
       </div>
